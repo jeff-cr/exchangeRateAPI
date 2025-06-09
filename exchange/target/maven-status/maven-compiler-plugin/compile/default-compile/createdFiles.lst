@@ -1,0 +1,11 @@
+com\api\exchange\API\config\ExchangeConfig$Bccr.class
+com\api\exchange\Bussiness\Services\USDExchangeService.class
+com\api\exchange\Utilities\helpers\ExchangeRate.class
+com\api\exchange\API\config\ExchangeConfig.class
+com\api\exchange\API\config\CorsConfig$1.class
+com\api\exchange\API\config\CorsConfig.class
+com\api\exchange\ExchangeApplication.class
+com\api\exchange\API\controllers\USDExchangeController.class
+com\api\exchange\Domain\dtos\USDExchangeRateDto.class
+com\api\exchange\Utilities\helpers\XmlParser.class
+com\api\exchange\Utilities\helpers\GetMethod.class

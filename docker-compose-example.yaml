@@ -1,0 +1,11 @@
+
+services:
+  exchange:
+    build: exchange
+    mem_limit: 512m
+    ports:
+      - "8080:8080"
+    environment:
+      BCCR_EMAIL: your_email@example.com
+      BCCR_TOKEN: your_token_here
+    restart: always
