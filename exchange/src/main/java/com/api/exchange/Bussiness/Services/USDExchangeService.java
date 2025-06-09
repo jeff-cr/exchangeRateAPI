@@ -1,5 +1,7 @@
 package com.api.exchange.Bussiness.Services;
 
+
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -10,24 +12,19 @@ import com.api.exchange.Utilities.helpers.ExchangeRate;
 
 @Service
 public class USDExchangeService {
-    private ExchangeRate exchangeRate;
+  
+     private final ExchangeConfig harbestConfig;
 
     public USDExchangeService(ExchangeConfig harbestConfig) {
-        this.exchangeRate = new ExchangeRate(harbestConfig);
+       this.harbestConfig = harbestConfig;
     }
 
-    private double getBuyExchangeRate() {
-        return exchangeRate.getCompra();
-    }
-
-    private double getSellExchangeRate() {
-        return exchangeRate.getVenta();
-    }
-
-    public Optional<USDExchangeRateDto> getExchangeRate() {
+    public Optional<USDExchangeRateDto> getExchangeRate(Date date) {
+      
         try {
-            var sellingRate = getSellExchangeRate();
-            var buyingRate = getBuyExchangeRate();
+             ExchangeRate exchangeRate = new ExchangeRate(harbestConfig, date);
+            var sellingRate =  exchangeRate.getVenta();
+            var buyingRate = exchangeRate.getCompra();
 
             USDExchangeRateDto dto = new USDExchangeRateDto();
             dto.setBuyingRate(buyingRate);

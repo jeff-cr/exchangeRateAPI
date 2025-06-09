@@ -15,10 +15,11 @@ public class ExchangeRate {
     private String url;
     private final String VALUE_TAG = "NUM_VALOR";
     private final ExchangeConfig.Bccr bccrConfig;
+  
 
-    public ExchangeRate(ExchangeConfig harbestConfig) {
+    public ExchangeRate(ExchangeConfig harbestConfig, Date requestDate) {
         this.bccrConfig = harbestConfig.getBccr();
-        setFecha();
+        setFecha(requestDate);
     }
 
     /**
@@ -81,14 +82,17 @@ public class ExchangeRate {
                 "&CorreoElectronico=" + bccrConfig.getEmail() +
                 "&Token=" + bccrConfig.getToken();
         this.url = HOST + "?" + params;
+        System.out.println("URL " + this.url);
     }
 
-    private void setFecha() {
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-        this.tcFechaInicio = sdf.format(date);
-        this.tcFechaFinal = tcFechaInicio;
+    private void setFecha(Date requestDate) {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    if (requestDate != null) {
+    this.tcFechaInicio = sdf.format(requestDate);
+    } else {
+    this.tcFechaInicio = sdf.format(new Date()); // solo si es null
+    }
+    this.tcFechaFinal = tcFechaInicio;
     }
 
     private void setCompra() {
